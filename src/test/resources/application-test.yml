@@ -1,0 +1,21 @@
+server:
+  port: 8089
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/logisticsdb
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+distance:
+  api:
+    url: http://localhost:8085/mock/distance
+logging:
+  level:
+    org.springframework.web.client.RestTemplate: DEBUG
+    org.springframework.http.client: DEBUG

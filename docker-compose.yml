@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:14
+    environment:
+      POSTGRES_DB: logisticsdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  flyway:
+    image: flyway/flyway
+    depends_on:
+      - postgres
+    command: -url=jdbc:postgresql://postgres:5432/logisticsdb -user=postgres -password=postgres -locations=filesystem:/flyway/sql migrate
+    volumes:
+      - ./src/main/resources/db/migration:/flyway/sql
+
+  logistics-service:
+    build: .
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/logisticsdb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      MOCK_DISTANCE_API_BASE_URL: http://localhost:8080
+    ports:
+      - "8080:8080"
+
+volumes:
+  pgdata:

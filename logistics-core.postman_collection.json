@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "fed54d7b-e020-4e09-8223-5ffef5555150",
+		"name": "logistics-core",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2683996"
+	},
+	"item": [
+		{
+			"name": "/api/shipments",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"origin\": \"Madrid\",\n    \"destination\": \"Barcelona\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/shipments",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"shipments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/shipments/1",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/shipments/1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"shipments",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/shipments",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/shipments?status=DELIVERED",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"shipments"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "DELIVERED"
+						},
+						{
+							"key": "creationDate",
+							"value": "2025-08-06T00:00:00",
+							"disabled": true
+						},
+						{
+							"key": "destination",
+							"value": "Barcelona",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/shipments/1/status",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"statusCode\": \"DELIVERED\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/shipments/1/status",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"shipments",
+						"1",
+						"status"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://localhost:8080",
+			"type": "string"
+		}
+	]
+}
